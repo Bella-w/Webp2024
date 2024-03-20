@@ -1,0 +1,52 @@
+<link href="https://cdn.jsdeliver.net/npm/bootstrap@5.0.2/dist/css/bootsrrap.min.css " rel="stylesheet" integrity="sha384-EVSTON3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<body>
+  <div id="container" tabindex="0"
+       class="blockquote text-nowrap">
+  </div>
+  
+  
+  <script>
+    var container=document.getElementById('container');
+    var str = '';
+    window.onload = function() {
+        // 網頁載入時產生亂數字串
+      renderString();
+    }
+    window.addEventListener("keyup", function(e){
+      console.log(e.key);
+      if(e.key){
+        //container.textContent="";
+        //檢查第一個字元是否和e.key一樣
+        if (str.charAt(0) === e.key) {
+        //一樣的話把第一個字元消除
+          str = str.substring(1);
+                renderString();
+        }
+      }
+      else if(e.key=='Backspace'){
+        var str=container.textContent;
+        container.textContent=str.substring(0,str.length-1);
+      }
+      else{
+        container.textContent +=e.key;
+      }
+      add_new_chars();
+
+    });
+
+    function add_new_chars(){
+      //container亂數的增加一或三個字元
+      var randomLength = Math.floor(Math.random() * 3) + 1;
+      for (var i = 0; i < randomLength; i++) {
+        str += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+      }
+      renderString();
+    }
+
+    function renderString() {
+        container.textContent = str; // 更新 container 的內容為目前的字串
+    }
+  </script>
+</body>
+
+
